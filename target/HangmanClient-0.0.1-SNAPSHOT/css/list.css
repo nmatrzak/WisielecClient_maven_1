@@ -1,0 +1,59 @@
+#progress {
+	height: 25px;
+	width: 80%;
+	margin: 5px auto 5px auto;	
+	padding: 2px;
+	text-align: center;
+}
+
+.prg_element {
+	border-bottom: 2px solid blue;
+	margin: 0px;
+	width: 20%;
+}
+
+.user_name {
+	float: left;
+	margin-left: 10px;
+	height: 25px;
+	font-weight: bold;
+	color: blue;
+	width: 25%;
+}
+
+.computer_name {
+	float: left;
+	margin-left: 10px;
+	height: 25px;
+	font-weight: bold;
+	color: green;
+	width: 25%;
+}
+
+.user_points {
+	float: left;
+	margin-left: 40px;
+	height: 25px;
+}
+
+.user_wins {
+	float: left;
+	margin-left: 40px;
+	height: 25px;
+}
+
+.user_losts {
+	float: left;
+	margin-left: 40px;
+	height: 25px;
+}
+
+.user_opponent {
+	float: left;
+	margin-left: 40px;
+	height: 25px;	
+}
+
+.opponent_name {
+	color: red;
+}

@@ -1,0 +1,39 @@
+#start {
+	margin: 200px 20% 1px 20%;
+	padding: 5px;
+	border: 1px lightgray solid;
+	border-radius: 4px;
+	text-align: center;
+}
+
+#start .label {
+	margin: 10px 20% 10px 20%;
+	padding: 5px;	
+	text-align: center;
+	font-size: 12pt
+}
+
+#start .button {
+	margin: 50px 20% 10px 20%;
+	padding: 5px;	
+	text-align: center;
+}
+
+#start .message {
+	margin: 10px 20% 10px 20%;
+	padding: 5px;	
+	text-align: center;	
+}
+
+#start .error {
+	color: red;	
+}
+
+
+#start input {
+	font-size: 14pt;
+}
+
+#start button {
+	font-size: 12pt;
+}

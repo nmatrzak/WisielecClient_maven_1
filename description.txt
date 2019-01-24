@@ -1,0 +1,97 @@
+Client:
+1. Log into to server:
+	1a. action: put a name 
+	1b. action: click the button start     -> server-action: make connection
+[the next screen]	
+	1c. action: get the list of players    -> server-action: return the list
+	1d. view: list of players (with points/ fails /wins) to choose, client-player (with points/ fails /wins)
+	
+2. Initializing game 
+	2a. action: choose a player from the list of players or wait for invitation
+	       player chosen: 
+			  action: send invitation to opponent
+			  action: wait for accept with timeout (10s)
+			  action: accepted => 2c
+			  action: timeout => 1c
+		   got inviation:
+		   	  view: "Player XXX wants play with you. Accept?"
+		   	  action: clicked button "yes" => 2c
+		   	  action: clicked button "no" => 1d	
+	
+	
+	2c. server-action: check state of player play with another 
+	2d. if "2c" is true
+		 send to player: "Player busy", GO TO "1c"
+	2e.	server-action: initialize game, init stats of players, return: put a word to guess (=> 3) / guess a word (=> 6)
+	
+3. 	Gaming - put a word to guess
+	3a. action: enter the word to guess    -> server-action: save word, ....
+	3b  view: word with underlined guessed letters, button "End game"
+	3c. action: wait for letter or press button "End game"
+	3d. action: button pressed "End game"  -> action: send "bye bye" to the opponent => 1c. 
+	3e. action: letter received
+	3f. view: word with underlined guessed letters
+	3g. all letters guessed -> view: opponent win => 4
+	3h. opponent reached max failings -> view: opponent lost => 5
+	3i. => "3b"
+	
+4.  Opponent win:
+    4a. increment opponent points by count of unique letters in the word
+	4b. view: buttons: Play again, End game
+	4c.	action: button pressed "End game"  -> action: send "bye bye" to the opponent => 1c.
+	4d	action: button pressed "Play again"
+				     action: send "Again?" to the opponent:
+					 action: wait for response with timeout 10 seconds
+					 action: letter received "Y" => "2c"
+					 timeout or another char => "1c"
+					 
+5. Opponent lost: 
+	5a. increase player points by one
+	5b. => 4b			 		 	
+	
+6. Gaming - guess a word
+    6a. view: state of hangman (picture), state of game, button "End game"
+    6b. action: wait for a word with gaps (equals to count of letters in the word) or press button "End game"
+    4c.	action: button pressed "End game"  -> action: send "bye bye" to the opponent => 1c.
+	
+	6c. view: show the word (with gaps and hits), player point, stats
+	6d. view: "enter a letter"
+	6e. action: a letter entered -> send the letter to the opponent 
+    6f. action: button pressed "End game"  -> action: send "bye bye" to the opponent => 1c.	
+
+	    
+	
+	
+Server	
+	3d. check if a letter hit or missed	
+	 		hit -> send to the opponent word with guessed letters, increase guessed letters (uniuqe) and add to the opponent game points
+	 		missed -> send to opponent "missed", increase counter of failed answers, send state of the hangman picture
+	3e. verify the state of the game:
+			check counter failed answers, and if opponent has max, send you lost
+	
+	
+Player: 
+	id, 
+	name, 
+	total points, 
+	game points (if win +unique count of letter in a word), 
+	win count, 
+	lost count, 
+	connection-client,
+	state: play, wait, init
+	
+Game: 
+    Player1, Player2, word
+	player-word: Player?
+	player-guess: Player?	
+	
+Connection-Server:     		 
+   list of connections <Connection-Client> 
+  
+Server:
+   list of games <Games>
+   list of players <Player>
+      
+ Client:
+   GUI
+   Player
