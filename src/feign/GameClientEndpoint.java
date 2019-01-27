@@ -40,18 +40,6 @@ public class GameClientEndpoint implements IGameClientEndpoint {
 	public GameClientEndpoint() {
 		System.out.println("GameClientEndpoint created");
 	}
-//	
-//	public boolean createGameReturnTrueIfGuess(String playerName, String opponentName) {
-//		System.out.println("GameClientEndpoint::createGameReturnTrueIfGuess");
-//		WebTarget target = webTarget.path(playerName+"/"+opponentName);
-//				
-//		String response = target.request()
-//				.accept(MediaType.TEXT_PLAIN).get(String.class);
-//			
-//		System.out.println("GameClientEndpoint::createGameReturnTrueIfGuess response = "+response);
-//		
-//		return "guess".equals(response);
-//	}
 
 	/*
 	 * @see feign.IGameClientEndpoint#createGameReturnTrueIfGuess(long, long)
@@ -67,29 +55,6 @@ public class GameClientEndpoint implements IGameClientEndpoint {
 		return "guess".equals(response);
 	}
 
-//	public void endGame(long playerId) {
-//		System.out.println("GameClientEndpoint::endGame");
-//		WebTarget target = webTarget.path("endGame/"+playerId);
-//
-//		String response = target.request().accept(MediaType.TEXT_PLAIN).get(String.class);
-//
-//		System.out.println("GameClientEndpoint::createGameReturnTrueIfGuess response = " + response);
-//		
-//	}
-
-//	public GameDto sendLetter(String playerName, String letter) {
-//		System.out.println("GameClientEndpoint::sendLetter "+playerName+" > "+letter);
-//		WebTarget target = webTarget.path("sendLetter/"+playerName+"/"+letter);
-//		String response = target.request()
-//				.accept(MediaType.TEXT_PLAIN).get(String.class);
-//		System.out.println("HangmanClientEndpoint::game/sendLetter response = "+response);
-//		
-//		GameDto p = g.fromJson(response, GameDto.class);
-//			
-//		System.out.println("HangmanClientEndpoint::GameDto response.usedletters = "+p.getUsedLetters());
-//		
-//		return p;
-//	}
 
 	/*
 	 * @see feign.IGameClientEndpoint#sendLetter(long, java.lang.String)
@@ -106,21 +71,6 @@ public class GameClientEndpoint implements IGameClientEndpoint {
 
 		return p;
 	}
-
-//	public GameDto updateWord(String playerName, String word) {
-//		System.out.println("GameClientEndpoint::updateWord "+playerName+" > "+word);
-//		
-//		WebTarget target = webTarget.path("updateWord/"+playerName+"/"+word);
-//		String response = target.request()
-//				.accept(MediaType.TEXT_PLAIN).get(String.class);
-//		System.out.println("HangmanClientEndpoint::game/sendLetter response = "+response);
-//		
-//		GameDto p = g.fromJson(response, GameDto.class);
-//			
-//		System.out.println("HangmanClientEndpoint::GameDto response.word = "+p.getTheWord());
-//		
-//		return p;
-//	}
 
 	/*
 	 * @see feign.IGameClientEndpoint#updateWord(long, java.lang.String)
