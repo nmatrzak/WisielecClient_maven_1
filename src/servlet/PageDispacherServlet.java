@@ -138,13 +138,10 @@ public class PageDispacherServlet extends HttpServlet {
 				updateWord(request, playerId, data);
 				setGameAttr = false;
 			} else if (OPERATION_GOTO_PAGE.equals(operation)) {
-//				if (PAGE_LIST.equals(data)) { endGame(playerId); }
+
 				nextPage = pageJsp(data);
 			}
-//			else if (OPERATION_END_GAME.equals(operation)) {
-//				endGame(playerId);
-//				nextPage = pageJsp(PAGE_LIST);
-//			}				
+		
 		}
 
 		if (playerId != -1) {
@@ -298,10 +295,6 @@ public class PageDispacherServlet extends HttpServlet {
 		}
 	}
 
-//	private void endGame(long playerId) {
-//		System.out.println("HttpServlet::endGame");
-//		gameClientEndpoint.endGame(playerId);
-//	} 
 
 	/**
 	 * uaktualnij slowo/Update word.

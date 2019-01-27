@@ -41,22 +41,10 @@ public class PlayerClientEndpoint implements IPlayerClientEndpoint {
 		System.out.println("PlayerClientEndpoint created");
 	}
 
-//	public boolean createGameReturnTrueIfGuess(String playerName, String opponentName) {
-//		
-//		System.out.println("HangmanClientEndpoint::createGameReturnTrueIfGuess");
-//		WebTarget target = webTarget.path("game/"+playerName+"/"+opponentName);
-//				
-//		String response = target.request()
-//				.accept(MediaType.TEXT_PLAIN).get(String.class);
-//			
-//		System.out.println("HangmanClientEndpoint::createGameReturnTrueIfGuess response = "+response);
-//		
-//		return "guess".equals(response);
-//	}
 	/*
 	 * @see feign.IPlayerClientEndpoint#getPlayerByName(java.lang.String)
 	 */
-//	
+
 	public PlayerDto getPlayerByName(String playerName) {
 		System.out.println("HangmanClientEndpoint::getPlayerByName > " + playerName);
 		WebTarget target = webTarget.path("byName/" + playerName);
