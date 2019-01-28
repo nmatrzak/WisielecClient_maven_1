@@ -1,6 +1,12 @@
 var polishSpecChars = 'ĄĆĘŁŃÓŚŻŹąćęłńóśżź'
 var specSEP = "@"
 
+
+/*
+ * Funkcja zwraca przeksztalcony znak diaktryczny na kod
+ * @author Piotr Podgorski
+ * @param ch - znak konwertowanny
+ * */
 function charToSpec(ch) {
 	console.log("charToSpec: "+ch)
     for(var i=0; i < polishSpecChars.length; i++ ) 
@@ -16,6 +22,11 @@ function charToSpec(ch) {
     return ch
 }
 
+/*
+ * Funkcja zwraca przeksztalcone slowo ze znakami diaktrycznymi na zakodowane
+ * @author Piotr Podgorski
+ * @param word  - slowo
+ * */
 function codePolishWordToWordWithSpecs(word) {
 	console.log("codePolishWordToWordWithSpecs: "+word)
     var result = ""
@@ -26,7 +37,11 @@ function codePolishWordToWordWithSpecs(word) {
     return result
 }
 
-
+/*
+ * Funkcja odwrotna do codePolishWordToWordWithSpecs
+ * @author Piotr Podgorski
+ * @param word  - zakodowane slowo
+ * */
 function decodeWordWithSpecsToPolishWord(word) {
 	console.log("decodeWordWithSpecsToPolishWord: "+word)	
     for(var i=0; i < polishSpecChars.length; i++ ) 

@@ -6,11 +6,20 @@ $("#dialog-disconnect").hide();
 var timerCounterFrom = 10;
 var timerCounter = timerCounterFrom;
 
+/*
+ * wyslanie ws -em komunikatu rozlaczenia
+ * @author Piotr Podgorski  
+ * 
+ * */
 function do_disconnect() {
 	sendByeBye()
 	submit_operation("disconnect", getPlayerId())
 }
 
+/*
+ * po nacisnieciu przycisku disconnect uruchomienie okna dialogowego
+ * @author Piotr Podgorski 
+ * */
 function buttonDisconnectClicked() {
 	console.log("disconnect: " + name)
 	$("#dialog-disconnect").dialog({
@@ -30,6 +39,11 @@ function buttonDisconnectClicked() {
 	});
 }
 
+/*
+ * Pokazanie uzytkownika i jego punktow
+ * @author Piotr Podgorski 
+ * @param user - uzytkownik json
+ * */
 function showUser(user) {
 	console.log("showUser: " + user);
 	var un = user.name
@@ -39,11 +53,19 @@ function showUser(user) {
 	$("#user_losts").html(user.countLosts);
 }
 
+/*
+ * Odswieza dane gracza
+ * @author Piotr Podgorski 
+ * @param player - uzytkownik json
+ * */
 function refershPlayer(player) {
 	console.log("refershPlayer");
 	showUser(player)
 }
-
+/*
+ * funkcja inicjacji paska postepu
+ * @author Piotr Podgorski 
+ * */
 function initProgress() {
 	var t = ""
 	for (i = 1; i <= timerCounterFrom; i++) {
@@ -52,9 +74,13 @@ function initProgress() {
 	}
 	$("#progress").html(t);
 }
-
+// zainicjowanie paska postepu
 initProgress()
 
+/*
+ * Wyswietlenie paska postepu zgodnie ze stanem licznika
+ * @author Piotr Podgorski 
+ * */
 function showProgress() {
 	for (i = 1; i <= timerCounterFrom; i++) {
 		if (i < timerCounterFrom - timerCounter + 1) {
@@ -65,15 +91,28 @@ function showProgress() {
 	}
 }
 
+/*
+ * Wstawia liste (html) do dokumentu strony w elemenci o id = list
+ * @author Piotr Podgorski 
+ * */
 function showList(l) {
 	console.log("showList: ");
 	$("#list").html(l)
 }
 
+/*
+ * Funkcja sprawdza czy "uzytkownik" jest niewidoczny
+ * @author Piotr Podgorski
+ * @param user - uzytkownik 
+ * */
 function isInvisible(user) {
 	return user.status == 'INVISIBLE'
 }
 
+/*
+ * Pobiera liste uztykownikow z serwera i odswieza ja na stronie
+ * @author Piotr Podgorski
+ * */
 function refreshList() {
 	console.log("refreshList");
 	$.ajax({
@@ -105,6 +144,11 @@ function refreshList() {
 	})
 }
 
+/*
+ * Funkcja sprawdza liczniki i w zaleznosci od ich stanu odswieza strone
+ * @author Piotr Podgorski
+ * 
+ * */
 function timeToRefresh() {
 	console.log("timeToRefresh: " + timerCounter);
 	timerCounter--;
@@ -115,6 +159,11 @@ function timeToRefresh() {
 	}
 }
 
+/*
+ * Funkcja timeout do odswiezenia listy 
+ * @author Piotr Podgorski
+ * 
+ * */
 function timeout() {
 	setTimeout(function() {
 		showProgress()
@@ -123,15 +172,29 @@ function timeout() {
 	}, 500);
 }
 
+/*
+ * Uruchomienie funkcja timeout do odswiezenia listy 
+ * @author Piotr Podgorski
+ *
+ * */
 timeout()
 
-/* messages from websocket */
+/*
+ * Po przejsciu na strone "zameldowanie sie serwerowi" z nowym id sessji 
+ * @author Piotr Podgorski
+ * 
+ * */
 function wsOnOpen() {
 	console.log("wsOnOpen")
 	sendHello()
 	refreshList()
 }
 
+/*
+ * Obsluga zdarzen przychodzacych z serwera - odpowiednia reakcja na nie (komunikacja websocket) 
+ * @author Piotr Podgorski
+ * @param msg - komunikat
+ * */
 function wsOnMessage(msg) {
 	console.log("wsOnMessage: " + msg)
 	if (msg == 'goto_guess') {
@@ -148,6 +211,11 @@ function wsOnMessage(msg) {
 	}	
 }
 
+/*
+ * Spradzenie czy przeciwnik jest "dostepny" do grania
+ * @author Piotr Podgorski
+ * @param opponentId - id przeciwnika (0 - gdy wybrano gre z komputerem)
+ * */
 function playerAliveCanPlay(opponentId) {
 	var urlGetPlayer = getEndpointUrl("players") + "/byId/" + opponentId // getUserName()
 	$.ajax({
@@ -169,6 +237,11 @@ function playerAliveCanPlay(opponentId) {
 	})
 }
 
+/*
+ * Wybiera uztykownika do grania i przechodi na odpowiednia strone
+ * @author Piotr Podgorski
+ * @param opponentId - id przeciwnika (0 - gdy wybrano gre z komputerem)
+ * */
 function playWith(opponentId) {	
 	if (opponentId == 0) {
 		submit_operation("playGame", 0)

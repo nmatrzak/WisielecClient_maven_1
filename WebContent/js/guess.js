@@ -1,28 +1,11 @@
 updateCurrentPage("guess")
 
-//function do_guess_end_game() {
-//	console.log("end_game");
-//	submit_operation("end_game", letter);
-//}
-//
-//function guess_end_game() {
-//	$("#dialog-confirm").dialog({
-//		resizable : false,
-//		height : "auto",
-//		width : 400,
-//		modal : true,
-//		buttons : {
-//			"YES" : function() {
-//				$(this).dialog("close");
-//				do_guess_end_game();
-//			},
-//			No : function() {
-//				$(this).dialog("close");
-//			}
-//		}
-//	});
-//}
-
+/*
+ * wyslanie wybranej litery formularzem do serwera
+ * @author Piotr Podgorski
+ * @param letter - litera
+ * @param id - id elementu HTML 
+ * */
 function guess_letter(letter, id) {
 	console.log("letter pressed: " + letter)
 	$('#' + id).attr("disabled", true);
@@ -38,14 +21,14 @@ function wsOnMessage(data) {
 	if (data == "word_updated") {
 		submit_operation("word_updated", "")
 	} 
-//	else if (msg == "opponnent_end_game") {
-//		$("#opponent_end_game").show();
-//		setTimeout(function() {
-//			goto_page("list")
-//		}, 5000);
-//	}
 }
 
+/*
+ * wybarkowane slowo jako element HTML
+ * @author Piotr Podgorski 
+ * @param gappedWord - wybrakowane slowo
+ * @return element HTML
+ * */
 function getGappedWord(gappedWord) {
 	console.log("showGappedWord: " + gappedWord)
 	var t = ""
@@ -62,6 +45,12 @@ function getGappedWord(gappedWord) {
 }
 
 
+/*
+ * wstawia "wybrakowane" slowo do opowiedniego elementu strony
+ * @author Piotr Podgorski 
+ * @param gappedWord - wybrakowane slowo
+ * @return element HTML
+ * */
 function printGappedWord(word) {
 	$("#word_lettered").html(getGappedWord(word))
 }
@@ -70,6 +59,9 @@ if (gappedWord != null) {
 	printGappedWord(gappedWord)
 }
 
+/*
+ * timeout no wywolanie funkcji alive 
+ * */
 function timeout() {
 	setTimeout(function() {
 		sendAlive()

@@ -2,6 +2,9 @@ var wsUri = "ws://" + document.location.host + "/HangmanServer/play";
 
 console.log(wsUri);
 
+/*
+ * obsluga websocketu - przypisanie funkcji do zdarzen
+ * */
 var websocket = new WebSocket(wsUri);
 
 console.log("connected");
@@ -27,6 +30,9 @@ websocket.onmessage = function(evt) {
 };
 
 
+/*
+ * wysylka informacji websocketem
+ */
 function wsSendMessage(msg) {
 	console.log('sendMessage: '+ msg)
 	websocket.send(msg)	
