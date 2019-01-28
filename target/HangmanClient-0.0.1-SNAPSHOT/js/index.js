@@ -1,26 +1,44 @@
 updateCurrentPage("index")
 
+/*
+ * Ukrycie komunikatu   
+ *  
+ * */
 function hideMessage() {
 	console.log("hideMessage")
 	$("#message").hide()
 }
 
+/*
+ * Pokazanie ze uzytkowanik utworzony, ustawienie nazwy uzytkownika, przejscie do kolejnej strony   
+ *  
+ * */
 function showUserCreated() {
 	console.log("showUserCreated")
 	$("#message").removeClass("error").html("User created! Wait ...").show();
 	setTimeout(function() {
-		hideMessage();
-//		alert(getUserNameConverted())		
+		hideMessage();		
 		submit_operation("setPlayerName", getUserNameConverted())
 	}, 500);
 }
 
+
+/*
+ * Pokazanie bledu   
+ *  
+ * */
 function showError() {
 	console.log("showError")
 	$("#message").addClass("error").html(
 			"User creation failed! Try again. Try with another name.").show();
 }
 
+
+/*
+ * Sprawdzenie, czy juz nie ma uzytkownika o podanej nazwie, jezeli nie przejscie do nastepnej strony
+ * @author Piotr Podgorski   
+ * @param name - nazwa użytkownika
+ * */
 function checkPlayerAndGo(name) {
 	console.log("checkPlayerAndGo: " + name);
 	var urlGetUser = getEndpointUrl("players") + "/" + name
@@ -39,6 +57,9 @@ function checkPlayerAndGo(name) {
 	})
 }
 
+/*
+ * Po nacisnieciu przycisku Start sprawdzenie czy pole zostalo wypelnione i wywolanie funkcji przejscia do nastepnej strony
+ * */
 function buttonStartClicked() {
 	console.log("buttonStartClicked")
 	username = getUserName()
@@ -67,6 +88,9 @@ function wsOnMessage(msg) {
 
 $("#username").focus()
 
+/*
+ * Ustawienie fokusa na element i przejecie zdarzenia nacisniecia enter - obsluga "start"
+ * */
 var input = document.getElementById("username");
 //Execute a function when the user releases a key on the keyboard
 input.addEventListener("keyup", function(event) {
@@ -78,6 +102,9 @@ input.addEventListener("keyup", function(event) {
 	}
 });
 
+/*
+ * wylaczenie domyslnego dzialania na zdarzeniu
+ * */
 $(document).ready(function() {
 	  $(window).keydown(function(event){
 	    if(event.keyCode == 13) {

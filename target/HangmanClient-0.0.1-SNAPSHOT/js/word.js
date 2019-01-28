@@ -1,33 +1,21 @@
 updateCurrentPage("word")
 
-//function do_guess_end_game() {
-//	console.log("end_game");
-//	submit_operation("end_game", letter);
-//}
-//
-//function guess_end_game() {
-//$( "#dialog-confirm" ).dialog({
-//      resizable: false,
-//      height: "auto",
-//      width: 400,
-//      modal: true,
-//      buttons: {
-//        "YES": function() {
-//          $( this ).dialog( "close" );
-//          do_guess_end_game();
-//        },
-//        No: function() {
-//          $( this ).dialog("close");
-//        }
-//      }
-//    });
-//}
-
+/*
+ * Funkcja wysyla hello do serwera - aktualizacja sesji - id gracza
+ * @author Piotr Podgorski
+ * 
+ * */
 function wsOnOpen() {
 	console.log("wsOnOpen")
 	sendHello()
 }
 
+/*
+ * Funkcja aktualizuje stan gry na www
+ * @author Piotr Podgorski
+ * @param game - obiekt gry
+ * 
+ * */
 function updateGame(game) {
 	console.log("updateGame")	
 	printTheWord(game.theWord,game.usedLetters)
@@ -45,6 +33,11 @@ function updateGame(game) {
 	}
 }
 
+/*
+ * Funkcja pobiera z serwera stan gry i aktualizuje strone www
+ * @author Piotr Podgorski
+ * 
+ * */
 function updateWordAndGameState() {
 	console.log("updateWordAndGameState")
 	var id = getPlayerId()
@@ -60,19 +53,23 @@ function updateWordAndGameState() {
 	})
 }
 
+/*
+ * Funkcja  przyjmuje z serwera gry informacje o wyslaniu znaku przez przeciwnika, aktualizuje stan gry
+ * @author Piotr Podgorski
+ * @param msg- dane z websocket
+ * */
 function wsOnMessage(msg) {
 	console.log("wsOnMessage: " + msg)
 	if (msg == "letter") {
 		updateWordAndGameState()
 	}  
-//	else if (msg == "opponnent_end_game") {
-//		$("#opponent_end_game").show();
-//		setTimeout(function() {
-//			   goto_page("list")
-//			}, 5000);
-//	}
 }
 
+/*
+ * Funkcja  sprawdza wprowadzone slowo przez uzytkownika i wysyla je do serwera w celu akutalizajci stanu gry
+ * @author Piotr Podgorski
+ * 
+ * */
 function wordEntered() {
 	var word = $("#word_input").val()
 	if (word == "" || word.length < 4) {
@@ -90,6 +87,12 @@ function wordEntered() {
 	return true;
 }
 
+/*
+ * Funkcja  generuje kod html do wyswietlania na stronie z odpowiednim stylowaniem liter zgadywanego wyrazu
+ * @author Piotr Podgorski
+ * @param theWord - zgadywane slowo
+ * @param used - wszystkie uzyte litery przez przeciwnika
+ * */
 function getTheWord(theWord, used) {
 	console.log("getTheWod: "+theWord+" < "+used)
 	var t = ""
@@ -106,12 +109,23 @@ function getTheWord(theWord, used) {
 	return t;
 }
 
+/*
+ * Funkcja  wyswietla slowo (html) w odpowiednim elemencie strony ( id word_lettered )
+ * @author Piotr Podgorski
+ * @param theWord - zgadywane slowo
+ * @param used - wszystkie uzyte litery przez przeciwnika
+ * */
 function printTheWord(theWord, used) {	 
 	var _theWord = decodeWordWithSpecsToPolishWord(theWord)
 	var _used = decodeWordWithSpecsToPolishWord(used)
 	$("#word_lettered").html(getTheWord(_theWord, _used))
 }
 
+/*
+ * Funkcja  wyswietla wszystkie uzytke litery (html) w odpowiednim elemencie strony ( id word_lettered )
+ * @author Piotr Podgorski
+ * @param letters - wszystkie uzyte litery przez przeciwnika
+ * */
 function printUsedLetters(letters) {
 	var _letters = decodeWordWithSpecsToPolishWord(letters)	
 	var t = ""
@@ -123,7 +137,11 @@ function printUsedLetters(letters) {
 	$("#letters").html(t)
 }
 
-
+/*
+ * Funkcja wysyla do serwera informacje o tym ze uzytkownik wciaz jest w "grze"
+ * @author Piotr Podgorski 
+ * 
+ * */
 function timeout() {
 	setTimeout(function() {
 		sendAlive()
@@ -137,6 +155,9 @@ $("#word").focus()
 
 printTheWord(theWord, lettersUsed)
 
+/*
+ * Ustawienie fokusa na element i przejecie zdarzenia nacisniecia enter - obsluga "start"
+ * */
 var input = document.getElementById("word_input");
 // Execute a function when the user releases a key on the keyboard
 if (input != null) {
@@ -150,6 +171,9 @@ if (input != null) {
 	});
 }
 
+/*
+ * wylaczenie domyslnego dzialania na zdarzeniu
+ * */
 $(document).ready(function() {
 	$(window).keydown(function(event) {
 		if (event.keyCode == 13) {

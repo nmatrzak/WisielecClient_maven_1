@@ -42,7 +42,7 @@ public class WordCodeDecode {
 	/**
 	 * wstawienie polsich znakow/insert polish char
 	 *
-	 * @param c znak/the c
+	 * @param word slowo/the word
 	 * @return the string
 	 */
 	public static String code(String word) {

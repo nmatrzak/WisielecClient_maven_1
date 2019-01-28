@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<!--  naglowek strony  -->
 <html>
 <head>
 <meta charset="UTF-8">

@@ -1,8 +1,8 @@
-C:\Users\nmatr\OneDrive\Pulpit\HangmanClient-develop(1)\HangmanClient-develop\src\feign\GameClientEndpoint.java
-C:\Users\nmatr\OneDrive\Pulpit\HangmanClient-develop(1)\HangmanClient-develop\src\dto\GameDto.java
-C:\Users\nmatr\OneDrive\Pulpit\HangmanClient-develop(1)\HangmanClient-develop\src\utils\WordCodeDecode.java
-C:\Users\nmatr\OneDrive\Pulpit\HangmanClient-develop(1)\HangmanClient-develop\src\feign\IGameClientEndpoint.java
-C:\Users\nmatr\OneDrive\Pulpit\HangmanClient-develop(1)\HangmanClient-develop\src\feign\IPlayerClientEndpoint.java
-C:\Users\nmatr\OneDrive\Pulpit\HangmanClient-develop(1)\HangmanClient-develop\src\dto\PlayerDto.java
-C:\Users\nmatr\OneDrive\Pulpit\HangmanClient-develop(1)\HangmanClient-develop\src\feign\PlayerClientEndpoint.java
-C:\Users\nmatr\OneDrive\Pulpit\HangmanClient-develop(1)\HangmanClient-develop\src\servlet\PageDispacherServlet.java
+C:\GITHUB\WisielecClient_maven_1\src\dto\GameDto.java
+C:\GITHUB\WisielecClient_maven_1\src\feign\GameClientEndpoint.java
+C:\GITHUB\WisielecClient_maven_1\src\feign\IGameClientEndpoint.java
+C:\GITHUB\WisielecClient_maven_1\src\feign\IPlayerClientEndpoint.java
+C:\GITHUB\WisielecClient_maven_1\src\utils\WordCodeDecode.java
+C:\GITHUB\WisielecClient_maven_1\src\servlet\PageDispacherServlet.java
+C:\GITHUB\WisielecClient_maven_1\src\dto\PlayerDto.java
+C:\GITHUB\WisielecClient_maven_1\src\feign\PlayerClientEndpoint.java
