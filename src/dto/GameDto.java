@@ -193,7 +193,7 @@ public class GameDto implements Serializable {
 	 * Ustawia nazwe gracza wprowadzajacego wyraz do zgadniecia/ Sets the player
 	 * name who write the word
 	 *
-	 * @param player1Name - imie gracza/the new player one name
+	 * @param playerWordName - imie gracza/the new player one name
 	 */
 
 	public void setPlayerWordName(String playerWordName) {
@@ -212,7 +212,7 @@ public class GameDto implements Serializable {
 	/**
 	 * Ustawia imie gracza zgadujacego/Sets the player name who guess the word
 	 *
-	 * @param player2Name - imie gracza zgadujacego/the new player two name
+	 * @param playerGuessName - imie gracza zgadujacego/the new player two name
 	 */
 	public void setPlayerGuessName(String playerGuessName) {
 		this.playerGuessName = playerGuessName;
